@@ -102,8 +102,6 @@ A fun and interactive Android app that helps you make decisions! Wheelie is a ro
 - **Emulator Issues**: Ensure your emulator is running Android API 31 or higher
 - **Memory Issues**: The app uses Canvas drawing which may require adequate device memory
 
-## 🤝 Contributing
-
 ## 📱 App Structure
 
 ```
