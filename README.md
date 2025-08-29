@@ -15,16 +15,16 @@ A fun and interactive Android app that helps you make decisions! Wheelie is a ro
 
 ## 🎮 How to Use
 
-1. **Add Tasks**: Tap the ➕ button to add your choices, tasks, or options to the wheel
-2. **Spin the Wheel**: Tap the center spin button to rotate the wheel
-3. **Get Your Decision**: Watch as the wheel spins and lands on your choice!
+1. **Add Tasks**: Tap the ➕ (add_circle) button to add your choices, tasks, or options to the wheel
+2. **Spin the Wheel**: Tap the center 🔄 (rotate) button to rotate the wheel with a 3-second animation
+3. **Get Your Decision**: Watch as the wheel spins and lands on your choice! The app uses an arrow indicator at the top
 4. **Manage Tasks**: 
-   - Use the ➖ button to remove the last added task
-   - Use the 🔄 button to reset and clear all tasks
+   - Use the ➖ (remove_circle) button to remove the last added task
+   - Use the 🔄 (reset_circle) button to reset and clear all tasks
 
 ## 🎨 Visual Design
 
-- **Color Palette**: The app uses a beautiful set of pastel colors:
+- **Color Palette**: The app uses a beautiful set of pastel colors automatically assigned to each task:
   - Soft Pink (`#FFA8A8`)
   - Mint Green (`#B5EAD7`) 
   - Sky Blue (`#9AD1D4`)
@@ -33,17 +33,35 @@ A fun and interactive Android app that helps you make decisions! Wheelie is a ro
   - Cream (`#FFDAC1`)
   - Rose (`#FFB5E8`)
 
-- **Animations**: 3-second spin duration with realistic easing for a satisfying user experience
+- **UI Elements**: Custom vector drawables for all controls:
+  - Arrow indicator at the top for result selection
+  - Add button (add_circle.xml)
+  - Remove button (remove_circle.xml) 
+  - Reset button (reset_circle.xml)
+  - Spin button (rotate.xml)
+
+- **Animations**: 3-second spin duration with `FastOutSlowInEasing` for a realistic wheel experience
+- **Smart Color Assignment**: The app intelligently avoids duplicate colors and assigns unused colors from the palette to new tasks
 
 ## 🛠️ Technical Details
 
-- **Platform**: Android (API 31+)
+- **Platform**: Android (API 31+, Target API 36)
 - **Language**: Kotlin
-- **UI Framework**: Jetpack Compose
+- **UI Framework**: Jetpack Compose with Material 3
 - **Architecture**: Modern Android development with:
-  - Material 3 Design System
-  - Compose Animation APIs
+  - Jetpack Compose for declarative UI
+  - Compose Animation APIs for smooth wheel rotation
   - State management with `remember` and `mutableStateOf`
+  - Custom Canvas drawing for the wheel sectors
+  - Coroutines for animation handling
+  - Vector drawables for scalable icons
+
+## 📱 Key Components
+
+- **Disc.kt**: Main wheel component with Canvas-based drawing
+- **DialogBox.kt**: Modal dialog for adding new tasks
+- **MainActivity.kt**: Entry point with Compose theme setup
+- **Sector data class**: Represents individual wheel segments with text and color
 
 ## 🏗️ Building the App
 
@@ -77,17 +95,28 @@ A fun and interactive Android app that helps you make decisions! Wheelie is a ro
    ./gradlew installDebug
    ```
 
+## 🔧 Troubleshooting
+
+- **Build Issues**: Make sure you have the correct Android SDK version (API 31+) installed
+- **Gradle Sync Problems**: Try cleaning the project: `./gradlew clean`
+- **Emulator Issues**: Ensure your emulator is running Android API 31 or higher
+- **Memory Issues**: The app uses Canvas drawing which may require adequate device memory
+
+## 🤝 Contributing
+
 ## 📱 App Structure
 
 ```
 app/
 ├── src/main/java/com/wheelie/
-│   ├── MainActivity.kt          # Main entry point
+│   ├── MainActivity.kt          # Main entry point & Sector data class
 │   └── ui/theme/
-│       ├── Disc.kt             # Main wheel component
-│       ├── DialogBox.kt        # Task input dialog
-│       └── Theme.kt            # App theming
-└── src/main/res/               # Resources (icons, etc.)
+│       ├── Disc.kt             # Main wheel component with Canvas drawing
+│       ├── DialogBox.kt        # Task input dialog with Material 3 styling
+│       └── Theme.kt            # App theming and color schemes
+└── src/main/res/               
+    ├── drawable/               # Vector icons (add, remove, reset, rotate, arrow)
+    └── values/                 # App name and color definitions
 ```
 
 ## 🎯 Use Cases
